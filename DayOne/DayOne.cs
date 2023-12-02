@@ -4,6 +4,8 @@ public static class DayOne
 {
     public static void Run()
     {
+        DateTime startTime = DateTime.UtcNow;
+
         StreamReader sr = new("C:/Users/Zach/Documents/Coding/Advent/DayOne/DayOneInput.txt");
         var line = sr.ReadLine();
 
@@ -25,7 +27,11 @@ public static class DayOne
             line = sr.ReadLine();
         }
 
+        DateTime endTime = DateTime.UtcNow;
+        TimeSpan duration = endTime - startTime;
+
         Console.WriteLine($"SUM: {sum}");
+        Console.WriteLine($"Time: {duration.TotalSeconds}");
     }
 
     // Only used for part two

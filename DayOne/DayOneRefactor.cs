@@ -4,6 +4,8 @@ public static class DayOneRefactor
 {
     public static void Run()
     {
+        DateTime startTime = DateTime.UtcNow;
+
         StreamReader sr = new("C:/Users/Zach/Documents/Coding/Advent/DayOne/DayOneInput.txt");
         var line = sr.ReadLine();
 
@@ -18,22 +20,20 @@ public static class DayOneRefactor
             int lineSum = firstNum + secondNum;
 
             sum += lineSum;
-            Console.WriteLine($"Running sum: {sum}");
 
             line = sr.ReadLine();
         }
 
-        Console.WriteLine();
+        DateTime endTime = DateTime.UtcNow;
+        TimeSpan duration = endTime - startTime;
+
         Console.WriteLine($"SUM: {sum}");
+        Console.WriteLine($"Time: {duration.TotalSeconds}");
     }
 
     private static List<int> getNumsFromLine(string line)
     {
         List<int> nums = new List<int>();
-
-        string[] threeLetterNums = new string[] { "one", "two", "six" };
-        string[] fourLetterNums = new string[] { "four", "five", "nine" };
-        string[] fiveLetterNums = new string[] { "three", "seven", "eight" };
 
         for (int i = 0; i < line.Length; i++)
         {
@@ -46,54 +46,53 @@ public static class DayOneRefactor
             {
                 try
                 {
+                    int potentialNum = getPotentialNum(i, line);
 
-                    string threeSub = line.Substring(i, 3);
-                    if (threeLetterNums.Contains(threeSub))
-                    {
-                        nums.Add(getIntFromLetters(threeSub));
-                    }
-
-                    string fourSub = line.Substring(i, 4);
-                    if (fourLetterNums.Contains(fourSub))
-                        nums.Add(getIntFromLetters(fourSub));
-
-                    string fiveSub = line.Substring(i, 5);
-                    if (fiveLetterNums.Contains(fiveSub))
-                        nums.Add(getIntFromLetters(fiveSub));
+                    if(potentialNum != -1)
+                        nums.Add(potentialNum);
                 }
                 catch (ArgumentOutOfRangeException) { }
             }
-
-
         }
 
         return nums;
     }
 
-    private static int getIntFromLetters(string letters)
+    private static int getPotentialNum(int index, string line)
     {
-        switch (letters)
+        string threeSub = line.Substring(index, 3);
+        switch(threeSub)
         {
             case "one":
                 return 1;
             case "two":
                 return 2;
-            case "three":
-                return 3;
+            case "six":
+                return 6;
+        }
+
+        string fourSub = line.Substring(index, 4);
+        switch(fourSub)
+        {
             case "four":
                 return 4;
             case "five":
                 return 5;
-            case "six":
-                return 6;
-            case "seven":
-                return 7;
-            case "eight":
-                return 8;
             case "nine":
                 return 9;
         }
 
-        throw new Exception("Number not in list");
+        string fiveSub = line.Substring(index, 5);
+        switch (fiveSub)
+        {
+            case "three":
+                return 3;
+            case "seven":
+                return 7;
+            case "eight":
+                return 8;
+        }
+
+        return -1;
     }
 }
