@@ -1,3 +1,3 @@
 ﻿using Advent.DayOne.DayOne;
 
-DayOne.Run();
+DayOneRefactor.Run();
