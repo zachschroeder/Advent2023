@@ -1,3 +1,3 @@
-﻿using Advent.DayOne.DayOne;
+﻿using Advent.DayTwo;
 
-DayOneRefactor.Run();
+DayTwo.Run();
