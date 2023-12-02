@@ -1,3 +1,3 @@
 ﻿using Advent.DayTwo;
 
-DayTwo.Run();
+DayTwoPartTwo.Run();
