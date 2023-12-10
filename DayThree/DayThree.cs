@@ -6,9 +6,9 @@ public static class DayThree
 {
     public static void Run()
     {
-        StreamReader sr = new StreamReader("C:/Users/Zach/Documents/Coding/Advent/DayThree/DayThreeInputSample.txt");
+        StreamReader sr = new StreamReader("C:/Users/Zach/Documents/Coding/Advent/DayThree/DayThreeInput.txt");
 
-        var topLine = sr.ReadLine();
+        var topLine = "";
         var currentLine = sr.ReadLine();
         var bottomLine = sr.ReadLine();
 
@@ -92,7 +92,7 @@ public static class DayThree
 
     private static int getLastDigitIndex(string line, int i)
     {
-        while (char.IsDigit(line[i]))
+        while (i < line.Length && char.IsDigit(line[i]))
             i++;
 
         return i-1;
