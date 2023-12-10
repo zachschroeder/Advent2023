@@ -14,9 +14,6 @@ public static class DayThree
 
         int sum = 0;
 
-        // ISSUE: NOT READING FIRST LINE
-        // Otherwise, perfect on sample data
-
         while (currentLine != null)
         {
             for (int i = 0; i < currentLine.Length; i++)
